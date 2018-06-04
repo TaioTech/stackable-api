@@ -20,7 +20,10 @@ defmodule ApiStackWeb.Router do
   end
 
   # Other scopes may use custom stacks.
-  # scope "/api", ApiStackWeb do
-  #   pipe_through :api
-  # end
+  scope "/api", ApiStackWeb do
+    pipe_through :api
+
+    resources "/managers", ManagerController, only: [:index, :show]
+    resources "/operations", OperationController, except: [:new, :edit]
+  end
 end

@@ -51,8 +51,8 @@ config :phoenix, :stacktrace_depth, 20
 # Configure your database
 config :api_stack, ApiStack.Repo,
   adapter: Ecto.Adapters.Postgres,
-  username: "postgres",
-  password: "postgres",
+  username: "tyler",
+  password: "pawargsk",
   database: "api_stack_dev",
   hostname: "localhost",
   pool_size: 10
