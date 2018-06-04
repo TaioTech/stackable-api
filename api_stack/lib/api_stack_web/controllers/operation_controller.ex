@@ -8,7 +8,7 @@ defmodule ApiStackWeb.OperationController do
 
   def index(conn, _params) do
     operations = Stack.list_operations()
-    render(conn, "index.json", operations: operations)
+    render(conn, "index.json-api", data: operations)
   end
 
   def create(conn, %{"operation" => operation_params}) do
@@ -16,13 +16,13 @@ defmodule ApiStackWeb.OperationController do
       conn
       |> put_status(:created)
       |> put_resp_header("location", operation_path(conn, :show, operation))
-      |> render("show.json", operation: operation)
+      |> render("show.json", data: operation)
     end
   end
 
   def show(conn, %{"id" => id}) do
     operation = Stack.get_operation!(id)
-    render(conn, "show.json", operation: operation)
+    render(conn, "show.json", data: operation)
   end
 
   def update(conn, %{"id" => id, "operation" => operation_params}) do

@@ -8,7 +8,7 @@ defmodule ApiStackWeb.ManagerController do
 
   def index(conn, _params) do
     managers = Stack.list_managers()
-    render(conn, "index.json", managers: managers)
+    render(conn, "index.json-api", data: managers)
   end
 
   def create(conn, %{"manager" => manager_params}) do
@@ -16,13 +16,13 @@ defmodule ApiStackWeb.ManagerController do
       conn
       |> put_status(:created)
       |> put_resp_header("location", manager_path(conn, :show, manager))
-      |> render("show.json", manager: manager)
+      |> render("show.json", data: manager)
     end
   end
 
   def show(conn, %{"id" => id}) do
     manager = Stack.get_manager!(id)
-    render(conn, "show.json", manager: manager)
+    render(conn, "show.json", data: manager)
   end
 
   def update(conn, %{"id" => id, "manager" => manager_params}) do
